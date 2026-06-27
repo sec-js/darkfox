@@ -1,6 +1,6 @@
 # 🦊 DarkFox 12/19/2025
 
-**Dark Web CTI & OSINT Investigation Framework**
+**Darkweb CTI & OSINT Investigation Framework**
 <img width="1401" height="772" alt="1aDarkfox" src="https://github.com/user-attachments/assets/51cd783f-f1f1-42ca-811f-cad01ec04163" />
 
 [![License](https://img.shields.io/badge/license-GPL--3.0-blue.svg)](LICENSE)
