@@ -4,7 +4,7 @@
 # Made for CTI OSINT cyber security research on the Dark Deep Web
 # Intended to be used on Kali Linux
 # Updated for compatibility and better Tor handling
-# Hacked on 12/17/2025, pay me later
+# Hacked on 07/01/2026, pay me later
 # Great ideas
 # Maybe run darkfox two times to make sure everything is installed.
 # Go here --> https://addons.mozilla.org/en-US/firefox/addon/noscript/
@@ -20,12 +20,12 @@
     cat <<'EOF'
 ╔══════════════════════════════════════════════════════════════╗
 ║                                                              ║
-║   ██████╗  █████╗ ██████╗ ██╗  ██╗███████╗ ██████╗ ██╗  ██╗ ║
-║   ██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝██╔════╝██╔═══██╗╚██╗██╔╝ ║
-║   ██║  ██║███████║██████╔╝█████╔╝ █████╗  ██║   ██║ ╚███╔╝  ║
-║   ██║  ██║██╔══██║██╔══██╗██╔═██╗ ██╔══╝  ██║   ██║ ██╔██╗  ║
-║   ██████╔╝██║  ██║██║  ██║██║  ██╗██║     ╚██████╔╝██╔╝ ██╗ ║
-║   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═╝ ║
+║   ██████╗  █████╗ ██████╗ ██╗  ██╗███████╗ ██████╗ ██╗  ██╗  ║
+║   ██╔══██╗██╔══██╗██╔══██╗██║ ██╔╝██╔════╝██╔═══██╗╚██╗██╔╝  ║
+║   ██║  ██║███████║██████╔╝█████╔╝ █████╗  ██║   ██║ ╚███╔╝   ║
+║   ██║  ██║██╔══██║██╔══██╗██╔═██╗ ██╔══╝  ██║   ██║ ██╔██╗   ║
+║   ██████╔╝██║  ██║██║  ██║██║  ██╗██║     ╚██████╔╝██╔╝ ██╗  ║
+║   ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝      ╚═════╝ ╚═╝  ╚═╝  ║
 ║                                                              ║
 ║            CTI Cyber Threat Intelligence Tool                ║
 ║                  Dark Web OSINT Research                     ║
@@ -451,7 +451,7 @@ if [ "$COUNT" -eq 0 ]; then
                 }
             }' "$AHMIA_CSV" | sort -u > "$RESULTS_FILE"
             
-            sed -i '/invest/d; /222/d; /drug/d; /porn/d; /fresh/d' "$RESULTS_FILE"
+            sed -i '/invest/d; /222/d; /drug/d; /porn/d; /fresh/d; /darknet/d; /dna/d; /hack/d' "$RESULTS_FILE"
             
             COUNT=$(wc -l < "$RESULTS_FILE")
             echo -e "\e[31mOnions Found:\e[0m $COUNT"
@@ -498,7 +498,7 @@ if [ "$COUNT" -gt 0 ]; then
     fi
     # --------------------------------------------------------------------
 
-    sudo torghostng -id nl
+    sudo python3 /opt/TorghostNG/torghostng.py -id nl
     echo
     echo -e "\e[031mEstablishing a Connection to the Dark Web\e[0m"
         
@@ -652,7 +652,7 @@ done
     echo -e "\e[31mGoWitness Getting Screenshots, Be patient and let it run.\e[0m"
 echo
 sudo ./gowitness scan file -f "$DARKFOX_DIR/results.onion.csv" \
-    --threads 16 \
+    --threads 10 \
     --write-db \
     --screenshot-fullpage \
     --chrome-proxy socks5://127.0.0.1:9050 \
@@ -698,7 +698,7 @@ if [[ "$DISCONNECT" == "y" || "$DISCONNECT" == "Y" ]]; then
     echo "Exiting Dark Web"
     echo -e "\e[31mBack to the real world\e[0m"
     echo
-    sudo torghostng -x --dns
+    sudo python3 /opt/TorghostNG/torghostng.py -x --dns
 fi
 echo
 
